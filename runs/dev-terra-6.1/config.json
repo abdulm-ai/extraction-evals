@@ -1,0 +1,25 @@
+{
+ "name": "dev-terra-6.1",
+ "model": "gpt-6.1-terra",
+ "sets": [
+  "cord",
+  "invoices"
+ ],
+ "split": "dev",
+ "input_mode": "image",
+ "output_mode": "strict",
+ "prompt": "v1",
+ "repair": 1,
+ "samples": 1,
+ "logprobs": false,
+ "max_docs": null,
+ "workers": 8,
+ "budget_usd": 10.0,
+ "model_ids": [
+  "gpt-6.1-terra"
+ ],
+ "documents": 200,
+ "price_date": "2026-10-29",
+ "cost_usd": 1.0243,
+ "written": "2026-10-29T04:03:18"
+}

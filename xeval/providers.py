@@ -1,4 +1,4 @@
-"""Anthropic and OpenAI behind one call.
+"""Anthropic, OpenAI and Google behind one call.
 
 A turn is a list of parts: {"type": "text", "text": ...} or
 {"type": "image", "path": ...}. Every request uses the model's default
@@ -24,6 +24,13 @@ PRICES = {
     "gpt-6.1-terra": (1.00, 0.05, 5.00),
     "gpt-6.1-sol": (2.00, 0.10, 10.00),
     "gpt-4.1-mini": (0.40, 0.10, 1.60),
+    # Gemini runs use the free tier; cost is what the same tokens would cost
+    # at the paid list price (text/image input). Cached input is priced as
+    # fresh input, since the runs don't use context caching.
+    "gemini-3.1-flash-lite": (0.25, 0.25, 1.50),
+    "gemini-3.5-flash-lite": (0.30, 0.30, 2.50),
+    "gemini-3.6-flash": (0.75, 0.75, 3.75),
+    "gemini-3.8-flash": (0.75, 0.75, 3.75),
 }
 PRICE_DATE = "2026-10-29"
 
@@ -49,7 +56,9 @@ class Response:
 
 
 def provider_of(model: str) -> str:
-    return "anthropic" if model.startswith("claude") else "openai"
+    if model.startswith("claude"):
+        return "anthropic"
+    return "google" if model.startswith("gemini") else "openai"
 
 
 def _b64(path: str) -> tuple[str, str]:
@@ -150,11 +159,90 @@ class OpenAI:
         )
 
 
+# Free-tier requests per minute, per model. Google shows the current numbers
+# only in AI Studio; these were read from the 429 responses on 2026-10-29.
+GEMINI_RPM = {"gemini-3.1-flash-lite": 15, "gemini-3.5-flash-lite": 15, "gemini-3.6-flash": 5, "gemini-3.8-flash": 5}
+
+
+class DailyQuotaExceeded(Exception):
+    """The free tier's requests-per-day limit: nothing more today."""
+
+
+class Google:
+    """Gemini through the google-genai SDK, paced to the free tier's
+    requests-per-minute limit. Rate-limit and overload errors are retried
+    with the server's suggested delay; a daily-quota error stops the run."""
+
+    def __init__(self):
+        import threading
+        from google import genai
+        from google.genai import types
+        self.types = types
+        self.client = genai.Client(http_options=types.HttpOptions(timeout=600_000))
+        self.lock = threading.Lock()
+        self.next_slot: dict[str, float] = {}
+
+    def _wait_turn(self, model: str):
+        gap = 60.0 / GEMINI_RPM.get(model, 10)
+        with self.lock:
+            now = time.monotonic()
+            slot = max(now, self.next_slot.get(model, now))
+            self.next_slot[model] = slot + gap
+        if slot > now:
+            time.sleep(slot - now)
+
+    def _parts(self, parts):
+        t = self.types
+        out = []
+        for p in parts:
+            if p["type"] == "image":
+                mt = mimetypes.guess_type(p["path"])[0] or "image/png"
+                with open(p["path"], "rb") as f:
+                    out.append(t.Part.from_bytes(data=f.read(), mime_type=mt))
+            else:
+                out.append(t.Part.from_text(text=p["text"]))
+        return out
+
+    def call(self, model: str, system: str, turns: list[dict], schema: dict | None) -> Response:
+        import re
+        from google.genai import errors
+        t = self.types
+        contents = [t.Content(role="model", parts=[t.Part.from_text(text=x["text"])]) if x["role"] == "assistant"
+                    else t.Content(role="user", parts=self._parts(x["parts"])) for x in turns]
+        cfg = dict(system_instruction=system, max_output_tokens=16000)
+        if schema is not None:
+            cfg |= dict(response_mime_type="application/json", response_json_schema=schema)
+        for attempt in range(8):
+            self._wait_turn(model)
+            t0 = time.perf_counter()
+            try:
+                r = self.client.models.generate_content(model=model, contents=contents, config=t.GenerateContentConfig(**cfg))
+                break
+            except errors.APIError as e:
+                msg = str(e)
+                if e.code == 429 and "PerDay" in msg:
+                    raise DailyQuotaExceeded(f"{model}: daily quota reached ({', '.join(re.findall(r"'quotaId': '([^']+)'", msg))})") from e
+                if e.code not in (429, 500, 503, 504) or attempt == 7:
+                    raise
+                m = re.search(r"retry in ([\d.]+)s|'retryDelay': '(\d+)s'", msg)
+                delay = float(next(g for g in m.groups() if g)) if m else min(2 ** attempt * 5, 120)
+                time.sleep(delay + 1)
+        dt = time.perf_counter() - t0
+        u = r.usage_metadata
+        thoughts = u.thoughts_token_count or 0
+        cand = r.candidates[0] if r.candidates else None
+        return Response(
+            text=r.text or "", input_tokens=u.prompt_token_count or 0, cached_tokens=u.cached_content_token_count or 0,
+            output_tokens=(u.candidates_token_count or 0) + thoughts, reasoning_tokens=thoughts, latency_s=dt,
+            stop_reason=str(cand.finish_reason.name if cand and cand.finish_reason else ""), model_id=r.model_version or model,
+        )
+
+
 _CLIENTS: dict[str, object] = {}
 
 
 def client(model: str):
     p = provider_of(model)
     if p not in _CLIENTS:
-        _CLIENTS[p] = Anthropic() if p == "anthropic" else OpenAI()
+        _CLIENTS[p] = {"anthropic": Anthropic, "openai": OpenAI, "google": Google}[p]()
     return _CLIENTS[p]

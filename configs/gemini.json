@@ -1,0 +1,16 @@
+{
+ "defaults": {"split": "test", "sets": ["cord", "invoices"], "budget_usd": 15.0, "workers": 8},
+ "runs": [
+  {"name": "lite-3.5", "model": "gemini-3.5-flash-lite", "samples": 5},
+  {"name": "lite-3.5-v2", "model": "gemini-3.5-flash-lite", "prompt": "v2"},
+  {"name": "lite-3.5-free", "model": "gemini-3.5-flash-lite", "output_mode": "free"},
+  {"name": "lite-3.5-degrade", "model": "gemini-3.5-flash-lite", "sets": ["degrade"], "repair": 0},
+  {"name": "lite-3.1", "model": "gemini-3.1-flash-lite"},
+  {"name": "lite-3.1-v2", "model": "gemini-3.1-flash-lite", "prompt": "v2"},
+  {"name": "lite-3.1-free", "model": "gemini-3.1-flash-lite", "output_mode": "free"},
+  {"name": "lite-3.1-degrade", "model": "gemini-3.1-flash-lite", "sets": ["degrade"], "repair": 0},
+  {"name": "lite-3.1-ocr", "model": "gemini-3.1-flash-lite", "input_mode": "ocr"},
+  {"name": "lite-3.1-gt_text", "model": "gemini-3.1-flash-lite", "input_mode": "gt_text"},
+  {"name": "lite-3.1-image+ocr", "model": "gemini-3.1-flash-lite", "input_mode": "image+ocr"}
+ ]
+}

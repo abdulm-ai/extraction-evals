@@ -1,0 +1,25 @@
+{
+ "name": "dev-luna-6",
+ "model": "gpt-6-luna",
+ "sets": [
+  "cord",
+  "invoices"
+ ],
+ "split": "dev",
+ "input_mode": "image",
+ "output_mode": "strict",
+ "prompt": "v1",
+ "repair": 1,
+ "samples": 5,
+ "logprobs": false,
+ "max_docs": null,
+ "workers": 8,
+ "budget_usd": 10.0,
+ "model_ids": [
+  "gpt-6-luna"
+ ],
+ "documents": 200,
+ "price_date": "2026-10-29",
+ "cost_usd": 0.4647,
+ "written": "2026-10-29T04:00:29"
+}

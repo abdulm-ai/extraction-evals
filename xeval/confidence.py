@@ -132,6 +132,16 @@ def apply_combined(rows: list[dict], features: list[str], w: np.ndarray) -> None
         r["combined"] = float(1 / (1 + math.exp(-x @ w)))
 
 
+def cross_fit_combined(rows: list[dict], features: list[str], folds: int = 5) -> None:
+    """Out-of-fold combined score: split by document, fit on the other folds,
+    score the held-out one. No document is scored by a model that saw it."""
+    import hashlib
+    fold = {i: int(hashlib.sha256(i.encode()).hexdigest(), 16) % folds for i in {r["doc_id"] for r in rows}}
+    for k in range(folds):
+        w = fit_combined([r for r in rows if fold[r["doc_id"]] != k], features)
+        apply_combined([r for r in rows if fold[r["doc_id"]] == k], features, w)
+
+
 def doc_level(rows: list[dict], signal: str) -> tuple[np.ndarray, np.ndarray]:
     """Document confidence = its least confident field; correct = every field right."""
     by: dict[str, list[dict]] = {}

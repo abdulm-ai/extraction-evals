@@ -29,11 +29,13 @@ from xeval.stats import auroc, bootstrap_ci, coverage_at_risk, ece, risk_coverag
 OUT = ROOT / "results"
 OUT.mkdir(exist_ok=True)
 
-MAIN = ["luna-6", "terra-6.1", "sol-6.1", "gpt-4.1-mini-lp"]
-LABEL = {"luna-6": "GPT-6 Luna", "terra-6.1": "GPT-6.1 Terra", "sol-6.1": "GPT-6.1 Sol", "gpt-4.1-mini-lp": "GPT-4.1 mini"}
-INPUT_MODELS = ["luna-6", "sol-6.1"]
-OUTPUT_MODELS = ["luna-6", "terra-6.1", "sol-6.1"]
-COLORS = {"luna-6": "#7aa6d6", "terra-6.1": "#3b6ea5", "sol-6.1": "#1d3557", "gpt-4.1-mini-lp": "#c15f3c"}
+MAIN = ["lite-3.1", "lite-3.5"]
+LABEL = {"lite-3.1": "Gemini 3.1 Flash-Lite", "lite-3.5": "Gemini 3.5 Flash-Lite", "flash-3.6": "Gemini 3.6 Flash",
+         "flash-3.8": "Gemini 3.8 Flash", "dev-luna-6": "GPT-6 Luna", "dev-terra-6.1": "GPT-6.1 Terra", "dev-sol-6.1": "GPT-6.1 Sol"}
+INPUT_MODELS = ["lite-3.1"]
+OUTPUT_MODELS = ["lite-3.1", "lite-3.5"]
+DEV_OPENAI = ["dev-luna-6", "dev-terra-6.1", "dev-sol-6.1"]
+COLORS = {"lite-3.1": "#9cc3e6", "lite-3.5": "#5b8fc7", "flash-3.6": "#2f5d94", "flash-3.8": "#1d3557"}
 MODES = ["image", "ocr", "image+ocr", "gt_text"]
 
 plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
@@ -164,23 +166,16 @@ for m in main:
 results["repair"] = repair_rows
 
 # --- confidence signals -------------------------------------------------------
-# Cross-model agreement: a cheap model checked against a stronger one.
-pairs = {"luna-6": "sol-6.1", "gpt-4.1-mini-lp": "sol-6.1", "terra-6.1": "sol-6.1", "sol-6.1": "terra-6.1"}
+# Cross-model agreement: each model checked against the other one.
+pairs = {"lite-3.1": "lite-3.5", "lite-3.5": "lite-3.1"}
 sig_res = {}
-for m in [x for x in ("luna-6", "gpt-4.1-mini-lp", "terra-6.1", "sol-6.1") if exists(x)]:
+for m in [x for x in MAIN if exists(x)]:
     other = load_run(pairs[m]) if exists(pairs[m]) else None
     rows = C.field_signals(load_run(m), other)
     feats = [f for f in ("stated", "checks", "consistency", "cross_model", "logprob") if not all(math.isnan(r[f]) for r in rows)]
-    dev_name = f"dev-{m}"
-    if exists(dev_name):
-        dev_other = load_run(f"dev-{pairs[m]}") if exists(f"dev-{pairs[m]}") else None
-        dev_rows = C.field_signals(load_run(dev_name), dev_other)
-        dfeats = [f for f in feats if not all(math.isnan(r[f]) for r in dev_rows)]
-        w = C.fit_combined(dev_rows, dfeats)
-        C.apply_combined(rows, dfeats, w)
-        feats_all = feats + ["combined"]
-    else:
-        feats_all = feats
+    # The combined signal is fitted out of fold (5 folds over documents).
+    C.cross_fit_combined(rows, feats)
+    feats_all = feats + ["combined"]
     C.save(rows, OUT / f"signals_{m}.jsonl")
     out = {}
     for f in feats_all:
@@ -258,7 +253,7 @@ if sig_res:
     plt.close(fig)
 
 # --- degradation curve --------------------------------------------------------
-deg = [m for m in OUTPUT_MODELS if exists(f"{m}-degrade")]
+deg = [m for m in MAIN if exists(f"{m}-degrade")]
 if deg:
     fig, ax = plt.subplots(figsize=(5.2, 3.8))
     curves = {}
@@ -280,6 +275,20 @@ if deg:
     fig.savefig(OUT / "degradation.png")
     plt.close(fig)
     results["degradation"] = curves
+
+# --- OpenAI, dev split (paid runs made before the credits ran out) ----------
+dev = [m for m in DEV_OPENAI if exists(m)]
+if dev:
+    md.append("
+### OpenAI models on the dev split: documents with every field right, % (95% interval)
+")
+    md.append("| Model | CORD | invoices | $ per 1,000 docs (CORD / invoices) | p50 s (CORD / invoices) |")
+    md.append("|---|---|---|---|---|")
+    for m in dev:
+        e = results["runs"][m]["sets"]
+        a, b = (next(r for r in e[s]["fields"] if r["field"] == "ALL FIELDS") for s in ("cord", "invoices"))
+        md.append(f"| {LABEL[m]} | {ci(a)} | {ci(b)} | {e['cord']['cost']['cost_per_1k']:.2f} / {e['invoices']['cost']['cost_per_1k']:.2f} | "
+                  f"{e['cord']['cost']['p50_s']:.1f} / {e['invoices']['cost']['p50_s']:.1f} |")
 
 # --- regression demo ---------------------------------------------------------
 reg = {}

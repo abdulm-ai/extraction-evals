@@ -147,6 +147,8 @@ def run_doc(cfg: RunConfig, record: dict, sample: int, ledger: Ledger | None) ->
         except BudgetExceeded:
             raise
         except Exception as e:  # an API error is a failed document, recorded as such
+            if _account_error(e):
+                raise AccountError(f"{type(e).__name__}: {e}"[:300]) from e
             attempts.append({"error": f"{type(e).__name__}: {e}"[:500], "parsed": None, "schema_errors": ["api error"], "checks": [], "cost": 0.0,
                              "usage": {"input": 0, "output": 0, "cached": 0, "reasoning": 0}, "latency_s": 0.0})
             break
@@ -164,6 +166,16 @@ def run_doc(cfg: RunConfig, record: dict, sample: int, ledger: Ledger | None) ->
     return {"doc_id": record["id"], "sample": sample, "attempts": attempts, "final": final, "cache_hits": cache_hits}
 
 
+class AccountError(Exception):
+    """No credits, bad key: every later call fails the same way, so stop."""
+
+
+def _account_error(e: Exception) -> bool:
+    msg = str(e).lower()
+    return type(e).__name__ in ("AuthenticationError", "PermissionDeniedError") or any(
+        k in msg for k in ("no credits", "insufficient_quota", "credit balance", "daily quota"))
+
+
 def run(cfg: RunConfig, quiet: bool = False) -> Path:
     records = load_records(cfg.sets, cfg.split, cfg.max_docs)
     out_dir = RUNS / cfg.name
@@ -176,10 +188,10 @@ def run(cfg: RunConfig, quiet: bool = False) -> Path:
         for n, f in enumerate(as_completed(futs), 1):
             try:
                 results.append(f.result())
-            except BudgetExceeded as e:
+            except (BudgetExceeded, AccountError) as e:
                 for g in futs:
                     g.cancel()
-                raise SystemExit(f"{cfg.name}: stopped, {e}. Finished documents are cached; raise the budget and rerun.")
+                raise SystemExit(f"{cfg.name}: stopped, {e}. Finished documents are cached; fix it and rerun.")
             if not quiet and n % 25 == 0:
                 print(f"  {cfg.name}: {n}/{len(jobs)}  ${ledger.spent:.2f} new spend", flush=True)
     results.sort(key=lambda d: (d["doc_id"], d["sample"]))

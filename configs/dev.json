@@ -1,9 +1,26 @@
 {
- "defaults": {"split": "dev", "sets": ["cord", "invoices"], "budget_usd": 10.0, "workers": 8},
+ "defaults": {
+  "split": "dev",
+  "sets": [
+   "cord",
+   "invoices"
+  ],
+  "budget_usd": 10.0,
+  "workers": 8
+ },
  "runs": [
-  {"name": "dev-luna-6",          "model": "gpt-6-luna", "samples": 5},
-  {"name": "dev-terra-6.1",       "model": "gpt-6.1-terra"},
-  {"name": "dev-sol-6.1",         "model": "gpt-6.1-sol"},
-  {"name": "dev-gpt-4.1-mini-lp", "model": "gpt-4.1-mini", "logprobs": true, "samples": 5}
+  {
+   "name": "dev-luna-6",
+   "model": "gpt-6-luna",
+   "samples": 5
+  },
+  {
+   "name": "dev-terra-6.1",
+   "model": "gpt-6.1-terra"
+  },
+  {
+   "name": "dev-sol-6.1",
+   "model": "gpt-6.1-sol"
+  }
  ]
 }

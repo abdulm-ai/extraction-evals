@@ -32,7 +32,7 @@ Rules:
 - discount is a positive amount; null if there is none. shipping is any shipping, freight or delivery charge; null if none.
 - tax is the total tax amount: add up every tax line (two VAT rates, or CGST plus SGST); null if no tax is charged.
 - amount_paid is a payment or deposit already received and deducted on the invoice; null if none. total is the amount still to pay: when a payment is deducted, the balance due.
-- line_items: every billed line, across all pages, in order.
+- line_items: every billed line, across all pages, in order. description is the line's name only: the smaller reference or detail text printed under it (PO references, periods, colours, batches) is not part of it. A shipping charge in the totals block is shipping, not a line item.
 - confidence: for every field, the probability that your value is exactly right. Be honest: use low values where the print is unclear or the invoice is ambiguous."""
 
 INVOICE_V2 = """You extract structured data from invoices.
@@ -45,7 +45,7 @@ INVOICE_V2 = """You extract structured data from invoices.
 - discount positive, or null. shipping: freight or delivery charge, or null.
 - tax: all tax lines added up, or null. amount_paid: payments already deducted, or null.
 - total: the amount still to pay.
-- line_items: all billed lines, all pages, in order.
+- line_items: all billed lines, all pages, in order; description is the item name without the detail line under it.
 - confidence: per field, the probability your value is exactly right."""
 
 SYSTEM = {
