@@ -1,0 +1,24 @@
+{
+ "name": "lite-3.1-degrade",
+ "model": "gemini-3.1-flash-lite",
+ "sets": [
+  "degrade"
+ ],
+ "split": "test",
+ "input_mode": "image",
+ "output_mode": "strict",
+ "prompt": "v1",
+ "repair": 0,
+ "samples": 1,
+ "logprobs": false,
+ "max_docs": null,
+ "workers": 8,
+ "budget_usd": 15.0,
+ "model_ids": [
+  "gemini-3.1-flash-lite"
+ ],
+ "documents": 240,
+ "price_date": "2026-10-29",
+ "cost_usd": 0.4236,
+ "written": "2026-10-31T18:24:04"
+}

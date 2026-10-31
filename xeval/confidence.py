@@ -8,9 +8,10 @@ Signals for a field of one document:
                the same normalised value
   cross_model  1 if a run of another model gives the same normalised value
   logprob      probability of the value's tokens (OpenAI non-reasoning models
-               only; neither the Claude API nor OpenAI's reasoning models
-               return log-probabilities)
-  combined     logistic regression over the available signals, fitted on dev
+               only; OpenAI's reasoning models and the Gemini models used here
+               return no log-probabilities)
+  combined     logistic regression over the available signals, cross-fitted
+               over test documents in 5 folds
 """
 
 from __future__ import annotations

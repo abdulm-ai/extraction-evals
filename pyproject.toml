@@ -5,7 +5,7 @@ description = "Per-field evals for document extraction: intervals, confidence si
 requires-python = ">=3.11"
 license = "MIT"
 dependencies = [
-  "anthropic>=2.3",
+  "google-genai>=2.34",
   "openai>=3.40",
   "numpy>=2.0",
   "scipy>=1.13",

@@ -1,10 +1,10 @@
-"""Anthropic, OpenAI and Google behind one call.
+"""OpenAI and Google behind one call.
 
 A turn is a list of parts: {"type": "text", "text": ...} or
 {"type": "image", "path": ...}. Every request uses the model's default
-settings: no temperature (the current Anthropic API rejects it, and the OpenAI
-reasoning models ignore it), default thinking and effort. Repeated samples
-therefore differ the way they would in production.
+settings: no temperature (the OpenAI reasoning models ignore it), default
+thinking and effort. Repeated samples therefore differ the way they would in
+production.
 """
 
 from __future__ import annotations
@@ -17,9 +17,6 @@ from dataclasses import dataclass, field
 PRICES = {
     # USD per million tokens: input, cached input, output. List prices on
     # 2026-10-29, from the providers' pricing pages.
-    "claude-haiku-5-5": (0.10, 0.01, 0.50),
-    "claude-sonnet-5-5": (2.00, 0.20, 10.00),
-    "claude-opus-5-5": (4.00, 0.20, 20.00),
     "gpt-6-luna": (0.10, 0.01, 0.50),
     "gpt-6.1-terra": (1.00, 0.05, 5.00),
     "gpt-6.1-sol": (2.00, 0.10, 10.00),
@@ -56,8 +53,6 @@ class Response:
 
 
 def provider_of(model: str) -> str:
-    if model.startswith("claude"):
-        return "anthropic"
     return "google" if model.startswith("gemini") else "openai"
 
 
@@ -65,50 +60,6 @@ def _b64(path: str) -> tuple[str, str]:
     mt = mimetypes.guess_type(path)[0] or "image/png"
     with open(path, "rb") as f:
         return mt, base64.standard_b64encode(f.read()).decode()
-
-
-class Anthropic:
-    def __init__(self):
-        import anthropic
-        self.sdk = anthropic
-        self.client = anthropic.Anthropic(max_retries=6, timeout=600)
-
-    def _content(self, parts):
-        out = []
-        for p in parts:
-            if p["type"] == "image":
-                mt, data = _b64(p["path"])
-                out.append({"type": "image", "source": {"type": "base64", "media_type": mt, "data": data}})
-            else:
-                out.append({"type": "text", "text": p["text"]})
-        return out
-
-    def call(self, model: str, system: str, turns: list[dict], schema: dict | None) -> Response:
-        msgs = []
-        for t in turns:
-            if t["role"] == "assistant":
-                # Thinking blocks from the first turn are sent back unchanged.
-                msgs.append({"role": "assistant", "content": t.get("raw_content") or t["text"]})
-            else:
-                msgs.append({"role": "user", "content": self._content(t["parts"])})
-        kw = {}
-        if schema is not None:
-            kw["output_config"] = {"format": {"type": "json_schema", "schema": schema}}
-        t0 = time.perf_counter()
-        r = self.client.messages.create(model=model, max_tokens=16000, system=system, messages=msgs, **kw)
-        dt = time.perf_counter() - t0
-        text = "".join(b.text for b in r.content if b.type == "text")
-        u = r.usage
-        cache_read = getattr(u, "cache_read_input_tokens", 0) or 0
-        cache_write = getattr(u, "cache_creation_input_tokens", 0) or 0
-        return Response(
-            text=text,
-            input_tokens=u.input_tokens + cache_read + cache_write,
-            cached_tokens=cache_read,
-            output_tokens=u.output_tokens,
-            latency_s=dt, stop_reason=r.stop_reason or "", model_id=r.model,
-            extra={"raw_content": [b.model_dump(exclude_none=True) for b in r.content]},
-        )
 
 
 class OpenAI:
@@ -244,5 +195,5 @@ _CLIENTS: dict[str, object] = {}
 def client(model: str):
     p = provider_of(model)
     if p not in _CLIENTS:
-        _CLIENTS[p] = {"anthropic": Anthropic, "openai": OpenAI, "google": Google}[p]()
+        _CLIENTS[p] = {"openai": OpenAI, "google": Google}[p]()
     return _CLIENTS[p]

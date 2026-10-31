@@ -31,10 +31,9 @@ OUT.mkdir(exist_ok=True)
 
 MAIN = ["lite-3.1", "lite-3.5"]
 LABEL = {"lite-3.1": "Gemini 3.1 Flash-Lite", "lite-3.5": "Gemini 3.5 Flash-Lite", "flash-3.6": "Gemini 3.6 Flash",
-         "flash-3.8": "Gemini 3.8 Flash", "dev-luna-6": "GPT-6 Luna", "dev-terra-6.1": "GPT-6.1 Terra", "dev-sol-6.1": "GPT-6.1 Sol"}
+         "flash-3.8": "Gemini 3.8 Flash"}
 INPUT_MODELS = ["lite-3.1"]
 OUTPUT_MODELS = ["lite-3.1", "lite-3.5"]
-DEV_OPENAI = ["dev-luna-6", "dev-terra-6.1", "dev-sol-6.1"]
 COLORS = {"lite-3.1": "#9cc3e6", "lite-3.5": "#5b8fc7", "flash-3.6": "#2f5d94", "flash-3.8": "#1d3557"}
 MODES = ["image", "ocr", "image+ocr", "gt_text"]
 
@@ -275,20 +274,6 @@ if deg:
     fig.savefig(OUT / "degradation.png")
     plt.close(fig)
     results["degradation"] = curves
-
-# --- OpenAI, dev split (paid runs made before the credits ran out) ----------
-dev = [m for m in DEV_OPENAI if exists(m)]
-if dev:
-    md.append("
-### OpenAI models on the dev split: documents with every field right, % (95% interval)
-")
-    md.append("| Model | CORD | invoices | $ per 1,000 docs (CORD / invoices) | p50 s (CORD / invoices) |")
-    md.append("|---|---|---|---|---|")
-    for m in dev:
-        e = results["runs"][m]["sets"]
-        a, b = (next(r for r in e[s]["fields"] if r["field"] == "ALL FIELDS") for s in ("cord", "invoices"))
-        md.append(f"| {LABEL[m]} | {ci(a)} | {ci(b)} | {e['cord']['cost']['cost_per_1k']:.2f} / {e['invoices']['cost']['cost_per_1k']:.2f} | "
-                  f"{e['cord']['cost']['p50_s']:.1f} / {e['invoices']['cost']['p50_s']:.1f} |")
 
 # --- regression demo ---------------------------------------------------------
 reg = {}

@@ -1,0 +1,25 @@
+{
+ "name": "lite-3.5-v2",
+ "model": "gemini-3.5-flash-lite",
+ "sets": [
+  "cord",
+  "invoices"
+ ],
+ "split": "test",
+ "input_mode": "image",
+ "output_mode": "strict",
+ "prompt": "v2",
+ "repair": 1,
+ "samples": 1,
+ "logprobs": false,
+ "max_docs": null,
+ "workers": 8,
+ "budget_usd": 15.0,
+ "model_ids": [
+  "gemini-3.5-flash-lite"
+ ],
+ "documents": 200,
+ "price_date": "2026-10-29",
+ "cost_usd": 0.414,
+ "written": "2026-10-31T18:24:05"
+}
