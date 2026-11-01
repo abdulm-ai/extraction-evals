@@ -1,0 +1,8361 @@
+{
+ "runs": {
+  "dev-luna-6": {
+   "config": {
+    "name": "dev-luna-6",
+    "model": "gpt-6-luna",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "dev",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 5,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 10.0,
+    "model_ids": [
+     "gpt-6-luna"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.4647,
+    "written": "2026-10-29T04:00:29"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.9595959595959596,
+       "lo": 0.9191919191919192,
+       "hi": 0.98989898989899,
+       "n": 99,
+       "halluc": 0.0625,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.022727272727272728,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.017857142857142856,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.83,
+       "lo": 0.75,
+       "hi": 0.9,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.944954128440367,
+       "lo": 0.9047619047619048,
+       "hi": 0.9802955665024631,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9761904761904762,
+       "lo": 0.9514563106796117,
+       "hi": 0.9955357142857143,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.96,
+       "lo": 0.8936170212765957,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9908675799086758,
+       "lo": 0.9760765550239234,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.76,
+       "lo": 0.67,
+       "hi": 0.84,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.9797979797979798,
+       "lo": 0.9494949494949495,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0625,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.022727272727272728,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.017857142857142856,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.85,
+       "lo": 0.78,
+       "hi": 0.92,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.944954128440367,
+       "lo": 0.9047619047619048,
+       "hi": 0.9802955665024631,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9761904761904762,
+       "lo": 0.9514563106796117,
+       "hi": 0.9955357142857143,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.96,
+       "lo": 0.8936170212765957,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9954337899543378,
+       "lo": 0.9846938775510204,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.8,
+       "lo": 0.72,
+       "hi": 0.87,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.44592560000000003,
+      "p50_s": 5.668,
+      "p95_s": 15.5093,
+      "failed": 0,
+      "repaired": 6
+     },
+     "mean_field_acc": 0.9636868686868687
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9967948717948718,
+       "lo": 0.9912182000217127,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9935897435897436,
+       "lo": 0.9849456962230507,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9914529914529915,
+       "lo": 0.9812380782827641,
+       "hi": 0.998947506200055,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9925213675213675,
+       "lo": 0.9822210756722952,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.84,
+       "lo": 0.77,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9967948717948718,
+       "lo": 0.9912182000217127,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9935897435897436,
+       "lo": 0.9849456962230507,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9914529914529915,
+       "lo": 0.9812380782827641,
+       "hi": 0.998947506200055,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9925213675213675,
+       "lo": 0.9822210756722952,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.84,
+       "lo": 0.77,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.8957796999999998,
+      "p50_s": 8.14,
+      "p95_s": 16.260399999999997,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9841666666666669
+    }
+   }
+  },
+  "dev-sol-6.1": {
+   "config": {
+    "name": "dev-sol-6.1",
+    "model": "gpt-6.1-sol",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "dev",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 10.0,
+    "model_ids": [
+     "gpt-6.1-sol"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 2.2841,
+    "written": "2026-10-29T04:04:51"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.03125,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.017857142857142856,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.92,
+       "lo": 0.86,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.981651376146789,
+       "lo": 0.9594594594594594,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.94,
+       "lo": 0.8571428571428571,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.89,
+       "lo": 0.83,
+       "hi": 0.95,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.03125,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.017857142857142856,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.92,
+       "lo": 0.86,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.981651376146789,
+       "lo": 0.9594594594594594,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.94,
+       "lo": 0.8571428571428571,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.89,
+       "lo": 0.83,
+       "hi": 0.95,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 6.815981999999998,
+      "p50_s": 5.1225000000000005,
+      "p95_s": 9.643199999999998,
+      "failed": 0,
+      "repaired": 4
+     },
+     "mean_field_acc": 0.9849747474747474
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9978632478632479,
+       "lo": 0.9932506536345119,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9978632478632479,
+       "lo": 0.9932506536345119,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9978632478632479,
+       "lo": 0.9932506536345119,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9978632478632479,
+       "lo": 0.9932506536345119,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 16.024660000000004,
+      "p50_s": 6.6015,
+      "p95_s": 11.4595,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.995
+    }
+   }
+  },
+  "dev-terra-6.1": {
+   "config": {
+    "name": "dev-terra-6.1",
+    "model": "gpt-6.1-terra",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "dev",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 10.0,
+    "model_ids": [
+     "gpt-6.1-terra"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 1.0243,
+    "written": "2026-10-29T04:03:18"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.03125,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9,
+       "lo": 0.84,
+       "hi": 0.95,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9724770642201835,
+       "lo": 0.9439252336448598,
+       "hi": 0.9953051643192489,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9952380952380953,
+       "lo": 0.9837837837837838,
+       "hi": 1.0,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.94,
+       "lo": 0.8571428571428571,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9954337899543378,
+       "lo": 0.9844342777237355,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.03125,
+       "n_null": 32
+      },
+      {
+       "field": "discount",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.010526315789473684,
+       "n_null": 95
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 56
+      },
+      {
+       "field": "total",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 2
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 36
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 58
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9,
+       "lo": 0.84,
+       "hi": 0.95,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9724770642201835,
+       "lo": 0.9439252336448598,
+       "hi": 0.9953051643192489,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9952380952380953,
+       "lo": 0.9837837837837838,
+       "hi": 1.0,
+       "n": 210,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.94,
+       "lo": 0.8571428571428571,
+       "hi": 1.0,
+       "n": 50,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9954337899543378,
+       "lo": 0.9844342777237355,
+       "hi": 1.0,
+       "n": 219,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 3.1759695,
+      "p50_s": 4.6465,
+      "p95_s": 7.7723999999999975,
+      "failed": 0,
+      "repaired": 5
+     },
+     "mean_field_acc": 0.9837247474747475
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 77
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 75
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 8
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 936,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 7.06658,
+      "p50_s": 7.275,
+      "p95_s": 15.6525,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9983333333333334
+    }
+   }
+  },
+  "lite-3.1": {
+   "config": {
+    "name": "lite-3.1",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.2732,
+    "written": "2026-10-29T19:28:38"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.66,
+       "lo": 0.57,
+       "hi": 0.75,
+       "n": 100,
+       "halluc": 0.9696969696969697,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9595959595959596,
+       "lo": 0.9191919191919192,
+       "hi": 0.98989898989899,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.82,
+       "lo": 0.74,
+       "hi": 0.89,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9558232931726908,
+       "lo": 0.9140603998655914,
+       "hi": 0.9884181021681022,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9879032258064516,
+       "lo": 0.960910989944767,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.49,
+       "lo": 0.39,
+       "hi": 0.59,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.68,
+       "lo": 0.59,
+       "hi": 0.77,
+       "n": 100,
+       "halluc": 0.9696969696969697,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9797979797979798,
+       "lo": 0.9494949494949495,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.83,
+       "lo": 0.75,
+       "hi": 0.9,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9558232931726908,
+       "lo": 0.9140603998655914,
+       "hi": 0.9884181021681022,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.51,
+       "lo": 0.41,
+       "hi": 0.61,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.8971425,
+      "p50_s": 5.545,
+      "p95_s": 37.335199999999986,
+      "failed": 0,
+      "repaired": 8
+     },
+     "mean_field_acc": 0.922449494949495
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.87,
+       "lo": 0.8,
+       "hi": 0.93,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.87,
+       "lo": 0.8,
+       "hi": 0.93,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.83481,
+      "p50_s": 10.4735,
+      "p95_s": 57.848849999999985,
+      "failed": 0,
+      "repaired": 1
+     },
+     "mean_field_acc": 0.985
+    }
+   }
+  },
+  "lite-3.1-degrade": {
+   "config": {
+    "name": "lite-3.1-degrade",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "degrade"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 0,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 240,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.4236,
+    "written": "2026-10-31T18:24:04"
+   },
+   "sets": {
+    "degrade": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.8916666666666667,
+       "lo": 0.85,
+       "hi": 0.9291666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.9708333333333333,
+       "lo": 0.95,
+       "hi": 0.9916666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.9833333333333333,
+       "lo": 0.9666666666666667,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 204
+      },
+      {
+       "field": "shipping",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "tax",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 18
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.9708333333333333,
+       "lo": 0.95,
+       "hi": 0.9916666666666667,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "total",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9208333333333333,
+       "lo": 0.8833333333333333,
+       "hi": 0.9541666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9991539763113367,
+       "lo": 0.997797332559318,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9949238578680203,
+       "lo": 0.98916963598596,
+       "hi": 0.9991642464495,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.988155668358714,
+       "lo": 0.9807015426895453,
+       "hi": 0.9941029042176894,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.989424703891709,
+       "lo": 0.9817753968239606,
+       "hi": 0.9955305575719522,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.7833333333333333,
+       "lo": 0.7291666666666666,
+       "hi": 0.8333333333333334,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.8916666666666667,
+       "lo": 0.85,
+       "hi": 0.9291666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.9708333333333333,
+       "lo": 0.95,
+       "hi": 0.9916666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.9833333333333333,
+       "lo": 0.9666666666666667,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 204
+      },
+      {
+       "field": "shipping",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "tax",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 18
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.9708333333333333,
+       "lo": 0.95,
+       "hi": 0.9916666666666667,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "total",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9208333333333333,
+       "lo": 0.8833333333333333,
+       "hi": 0.9541666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9991539763113367,
+       "lo": 0.997797332559318,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9949238578680203,
+       "lo": 0.98916963598596,
+       "hi": 0.9991642464495,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.988155668358714,
+       "lo": 0.9807015426895453,
+       "hi": 0.9941029042176894,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.989424703891709,
+       "lo": 0.9817753968239606,
+       "hi": 0.9955305575719522,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.7833333333333333,
+       "lo": 0.7291666666666666,
+       "hi": 0.8333333333333334,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.764925,
+      "p50_s": 4.619999999999999,
+      "p95_s": 21.64554999999997,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9743055555555555
+    }
+   }
+  },
+  "lite-3.1-free": {
+   "config": {
+    "name": "lite-3.1-free",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "free",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.3234,
+    "written": "2026-10-31T18:24:02"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.7,
+       "lo": 0.61,
+       "hi": 0.79,
+       "n": 100,
+       "halluc": 0.8181818181818182,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9696969696969697,
+       "lo": 0.9292929292929293,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.84,
+       "lo": 0.76,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.963855421686747,
+       "lo": 0.9262259444048467,
+       "hi": 0.9917355371900827,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9959677419354839,
+       "lo": 0.9859808985079522,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.57,
+       "lo": 0.47,
+       "hi": 0.67,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.73,
+       "lo": 0.64,
+       "hi": 0.82,
+       "n": 100,
+       "halluc": 0.8181818181818182,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.85,
+       "lo": 0.78,
+       "hi": 0.92,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.963855421686747,
+       "lo": 0.9262259444048467,
+       "hi": 0.9917355371900827,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.59,
+       "lo": 0.49,
+       "hi": 0.69,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.12228,
+      "p50_s": 5.8785,
+      "p95_s": 83.78484999999998,
+      "failed": 0,
+      "repaired": 7
+     },
+     "mean_field_acc": 0.9299621212121212
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9951969260326609,
+       "lo": 0.9888654072331667,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.91,
+       "lo": 0.85,
+       "hi": 0.96,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9951969260326609,
+       "lo": 0.9888654072331667,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.91,
+       "lo": 0.85,
+       "hi": 0.96,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 2.111265,
+      "p50_s": 4.67,
+      "p95_s": 55.39915,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9908333333333332
+    }
+   }
+  },
+  "lite-3.1-gt_text": {
+   "config": {
+    "name": "lite-3.1-gt_text",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "gt_text",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.2201,
+    "written": "2026-10-31T18:24:15"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.69,
+       "lo": 0.6,
+       "hi": 0.78,
+       "n": 100,
+       "halluc": 0.9393939393939394,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9191919191919192,
+       "lo": 0.8585858585858586,
+       "hi": 0.9696969696969697,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.74,
+       "lo": 0.65,
+       "hi": 0.83,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.8955823293172691,
+       "lo": 0.8464907730945621,
+       "hi": 0.9380541508638854,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9908256880733946,
+       "lo": 0.9754901960784313,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9314516129032258,
+       "lo": 0.839049394221808,
+       "hi": 0.9955367019595449,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.43,
+       "lo": 0.33,
+       "hi": 0.53,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.69,
+       "lo": 0.6,
+       "hi": 0.78,
+       "n": 100,
+       "halluc": 0.9393939393939394,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9292929292929293,
+       "lo": 0.8787878787878788,
+       "hi": 0.9696969696969697,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.74,
+       "lo": 0.65,
+       "hi": 0.82,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.891566265060241,
+       "lo": 0.841460039600396,
+       "hi": 0.9341148873125618,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9862385321100917,
+       "lo": 0.9684168755221387,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9193548387096774,
+       "lo": 0.8235180995475113,
+       "hi": 0.987501296680498,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.43,
+       "lo": 0.33,
+       "hi": 0.53,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.6091549999999999,
+      "p50_s": 1.5425,
+      "p95_s": 28.72855,
+      "failed": 0,
+      "repaired": 10
+     },
+     "mean_field_acc": 0.9061489898989898
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.5916175,
+      "p50_s": 2.564,
+      "p95_s": 8.27734999999999,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9958333333333332
+    }
+   }
+  },
+  "lite-3.1-image+ocr": {
+   "config": {
+    "name": "lite-3.1-image+ocr",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image+ocr",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.2871,
+    "written": "2026-11-01T12:38:43"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.69,
+       "lo": 0.6,
+       "hi": 0.78,
+       "n": 100,
+       "halluc": 0.9090909090909091,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.010416666666666666,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9595959595959596,
+       "lo": 0.9191919191919192,
+       "hi": 0.98989898989899,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.83,
+       "lo": 0.75,
+       "hi": 0.9,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9678714859437751,
+       "lo": 0.9324880260006843,
+       "hi": 0.9930343420361796,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.53,
+       "lo": 0.43,
+       "hi": 0.63,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.7,
+       "lo": 0.61,
+       "hi": 0.79,
+       "n": 100,
+       "halluc": 0.9090909090909091,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.010416666666666666,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9696969696969697,
+       "lo": 0.9292929292929293,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.82,
+       "lo": 0.74,
+       "hi": 0.89,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9678714859437751,
+       "lo": 0.9324880260006843,
+       "hi": 0.9930343420361796,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9879032258064516,
+       "lo": 0.960910989944767,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.52,
+       "lo": 0.42,
+       "hi": 0.62,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.8934424999999999,
+      "p50_s": 3.1275,
+      "p95_s": 10.404899999999998,
+      "failed": 0,
+      "repaired": 6
+     },
+     "mean_field_acc": 0.9274494949494949
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.9949698189134809,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.92,
+       "lo": 0.86,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968585564226679,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.9949698189134809,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.91,
+       "lo": 0.85,
+       "hi": 0.96,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.9772625000000001,
+      "p50_s": 4.622,
+      "p95_s": 29.353999999999964,
+      "failed": 0,
+      "repaired": 1
+     },
+     "mean_field_acc": 0.9933333333333333
+    }
+   }
+  },
+  "lite-3.1-ocr": {
+   "config": {
+    "name": "lite-3.1-ocr",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "ocr",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.2453,
+    "written": "2026-10-31T18:24:14"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.5,
+       "lo": 0.4,
+       "hi": 0.6,
+       "n": 100,
+       "halluc": 0.21212121212121213,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.7171717171717171,
+       "lo": 0.6262626262626263,
+       "hi": 0.8080808080808081,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.39,
+       "lo": 0.29,
+       "hi": 0.49,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.5454545454545454,
+       "lo": 0.4444444444444444,
+       "hi": 0.6464646464646465,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.69,
+       "lo": 0.6,
+       "hi": 0.78,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.15,
+       "lo": 0.08,
+       "hi": 0.22,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.4819277108433735,
+       "lo": 0.38016528925619836,
+       "hi": 0.5843149358508836,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.3944954128440367,
+       "lo": 0.297957012592271,
+       "hi": 0.4971781951442969,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.3880597014925373,
+       "lo": 0.23943661971830985,
+       "hi": 0.5555952380952383,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.3911290322580645,
+       "lo": 0.2901930848675348,
+       "hi": 0.4976324958341449,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.08,
+       "lo": 0.03,
+       "hi": 0.14,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.51,
+       "lo": 0.41,
+       "hi": 0.6002500000000008,
+       "n": 100,
+       "halluc": 0.21212121212121213,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.7272727272727273,
+       "lo": 0.6363636363636364,
+       "hi": 0.8080808080808081,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.38,
+       "lo": 0.29,
+       "hi": 0.48,
+       "n": 100,
+       "halluc": 0.5,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.5454545454545454,
+       "lo": 0.4444444444444444,
+       "hi": 0.6464646464646465,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.69,
+       "lo": 0.6,
+       "hi": 0.78,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.15,
+       "lo": 0.08,
+       "hi": 0.22,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.4779116465863454,
+       "lo": 0.3780396210614467,
+       "hi": 0.5785489637071228,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.4036697247706422,
+       "lo": 0.30555213464696224,
+       "hi": 0.508023558317676,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.3880597014925373,
+       "lo": 0.23943661971830985,
+       "hi": 0.5555952380952383,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.3951612903225806,
+       "lo": 0.2943432959862103,
+       "hi": 0.5018225280695401,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.08,
+       "lo": 0.03,
+       "hi": 0.14,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.49408,
+      "p50_s": 5.6295,
+      "p95_s": 13.679649999999993,
+      "failed": 0,
+      "repaired": 12
+     },
+     "mean_field_acc": 0.6103282828282828
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.61,
+       "lo": 0.52,
+       "hi": 0.71,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.8117195004803074,
+       "lo": 0.7211607189991026,
+       "hi": 0.895816162974977,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.8232468780019212,
+       "lo": 0.7357218431568712,
+       "hi": 0.9042713597704019,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.8097982708933718,
+       "lo": 0.7198571250229967,
+       "hi": 0.8925791598516437,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.8309317963496637,
+       "lo": 0.7444026665453222,
+       "hi": 0.9110500388945486,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.54,
+       "lo": 0.44,
+       "hi": 0.64,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.54,
+       "lo": 0.45,
+       "hi": 0.64,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.8117195004803074,
+       "lo": 0.7211607189991026,
+       "hi": 0.895816162974977,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.8165225744476465,
+       "lo": 0.7293073173040515,
+       "hi": 0.8958741529402806,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.813640730067243,
+       "lo": 0.7253775836955516,
+       "hi": 0.8953983168003765,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.8328530259365994,
+       "lo": 0.7471343236590308,
+       "hi": 0.9125359033950886,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.48,
+       "lo": 0.38,
+       "hi": 0.58,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.9591125,
+      "p50_s": 2.4370000000000003,
+      "p95_s": 8.701799999999986,
+      "failed": 0,
+      "repaired": 27
+     },
+     "mean_field_acc": 0.9283333333333333
+    }
+   }
+  },
+  "lite-3.1-v2": {
+   "config": {
+    "name": "lite-3.1-v2",
+    "model": "gemini-3.1-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v2",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.1-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.2619,
+    "written": "2026-10-31T18:24:01"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.66,
+       "lo": 0.57,
+       "hi": 0.75,
+       "n": 100,
+       "halluc": 0.9696969696969697,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9595959595959596,
+       "lo": 0.9191919191919192,
+       "hi": 0.98989898989899,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.82,
+       "lo": 0.74,
+       "hi": 0.89,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9558232931726908,
+       "lo": 0.9140603998655914,
+       "hi": 0.9884181021681022,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9879032258064516,
+       "lo": 0.960910989944767,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.49,
+       "lo": 0.39,
+       "hi": 0.59,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.68,
+       "lo": 0.59,
+       "hi": 0.77,
+       "n": 100,
+       "halluc": 0.9696969696969697,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.020833333333333332,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9797979797979798,
+       "lo": 0.9494949494949495,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.83,
+       "lo": 0.75,
+       "hi": 0.9,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9558232931726908,
+       "lo": 0.9140603998655914,
+       "hi": 0.9884181021681022,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.51,
+       "lo": 0.41,
+       "hi": 0.61,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 0.8971425,
+      "p50_s": 5.545,
+      "p95_s": 37.335199999999986,
+      "failed": 0,
+      "repaired": 8
+     },
+     "mean_field_acc": 0.922449494949495
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.73,
+       "lo": 0.64,
+       "hi": 0.81,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.67,
+       "lo": 0.58,
+       "hi": 0.76,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.73,
+       "lo": 0.64,
+       "hi": 0.81,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.67,
+       "lo": 0.58,
+       "hi": 0.76,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.7217100000000003,
+      "p50_s": 4.5015,
+      "p95_s": 25.654699999999995,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9700000000000001
+    }
+   }
+  },
+  "lite-3.5": {
+   "config": {
+    "name": "lite-3.5",
+    "model": "gemini-3.5-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 5,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.5-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 2.0457,
+    "written": "2026-10-31T18:24:04"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.75,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9797979797979798,
+       "lo": 0.9494949494949495,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9959677419354839,
+       "lo": 0.9866071428571429,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.84,
+       "lo": 0.77,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.75,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9838709677419355,
+       "lo": 0.9527846122539589,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.85,
+       "lo": 0.78,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.356398,
+      "p50_s": 17.346,
+      "p95_s": 52.5565,
+      "failed": 0,
+      "repaired": 9
+     },
+     "mean_field_acc": 0.9737121212121211
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9980787704130644,
+       "lo": 0.994987405826502,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9990393852065321,
+       "lo": 0.9968351078094829,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.94,
+       "lo": 0.89,
+       "hi": 0.98,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 2.8667820000000006,
+      "p50_s": 3.925,
+      "p95_s": 17.744949999999996,
+      "failed": 0,
+      "repaired": 1
+     },
+     "mean_field_acc": 0.9950000000000001
+    }
+   }
+  },
+  "lite-3.5-degrade": {
+   "config": {
+    "name": "lite-3.5-degrade",
+    "model": "gemini-3.5-flash-lite",
+    "sets": [
+     "degrade"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v1",
+    "repair": 0,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.5-flash-lite"
+    ],
+    "documents": 240,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.6634,
+    "written": "2026-11-01T12:53:20"
+   },
+   "sets": {
+    "degrade": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.9,
+       "lo": 0.8583333333333333,
+       "hi": 0.9375,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.9666666666666667,
+       "lo": 0.9416666666666667,
+       "hi": 0.9875,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.9791666666666666,
+       "lo": 0.9583333333333334,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 204
+      },
+      {
+       "field": "shipping",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "tax",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 18
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.9791666666666666,
+       "lo": 0.9583333333333334,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "total",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9083333333333333,
+       "lo": 0.8708333333333333,
+       "hi": 0.9416666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.998730964467005,
+       "lo": 0.9965243820154869,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9906937394247038,
+       "lo": 0.9859263812511984,
+       "hi": 0.9949792606690747,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9928087986463621,
+       "lo": 0.9873025099773968,
+       "hi": 0.9971003983925927,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.7916666666666666,
+       "lo": 0.7416666666666667,
+       "hi": 0.8416666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.9,
+       "lo": 0.8583333333333333,
+       "hi": 0.9375,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.9666666666666667,
+       "lo": 0.9416666666666667,
+       "hi": 0.9875,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 12
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.9791666666666666,
+       "lo": 0.9583333333333334,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 204
+      },
+      {
+       "field": "shipping",
+       "acc": 0.9958333333333333,
+       "lo": 0.9875,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "tax",
+       "acc": 0.9875,
+       "lo": 0.9708333333333333,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 18
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.9791666666666666,
+       "lo": 0.9583333333333334,
+       "hi": 0.9958333333333333,
+       "n": 240,
+       "halluc": 0.0,
+       "n_null": 180
+      },
+      {
+       "field": "total",
+       "acc": 0.9916666666666667,
+       "lo": 0.9791666666666666,
+       "hi": 1.0,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.9083333333333333,
+       "lo": 0.8708333333333333,
+       "hi": 0.9416666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.998730964467005,
+       "lo": 0.9965243820154869,
+       "hi": 1.0,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9906937394247038,
+       "lo": 0.9859263812511984,
+       "hi": 0.9949792606690747,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9928087986463621,
+       "lo": 0.9873025099773968,
+       "hi": 0.9971003983925927,
+       "n": 2364,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.7916666666666666,
+       "lo": 0.7416666666666667,
+       "hi": 0.8416666666666667,
+       "n": 240,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 2.7642216666666664,
+      "p50_s": 3.605,
+      "p95_s": 6.890849999999997,
+      "failed": 0,
+      "repaired": 0
+     },
+     "mean_field_acc": 0.9739583333333334
+    }
+   }
+  },
+  "lite-3.5-free": {
+   "config": {
+    "name": "lite-3.5-free",
+    "model": "gemini-3.5-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "free",
+    "prompt": "v1",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.5-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.528,
+    "written": "2026-11-01T12:37:12"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.010416666666666666,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.86,
+       "lo": 0.78,
+       "hi": 0.92,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9954128440366973,
+       "lo": 0.9846938775510204,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.77,
+       "lo": 0.68,
+       "hi": 0.85,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.010416666666666666,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.95,
+       "lo": 0.9,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 1.0,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.87,
+       "lo": 0.8,
+       "hi": 0.93,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9954128440366973,
+       "lo": 0.9846938775510204,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9879032258064516,
+       "lo": 0.9594548734254617,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.78,
+       "lo": 0.7,
+       "hi": 0.86,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.6639460000000001,
+      "p50_s": 1.7759999999999998,
+      "p95_s": 3.6561999999999997,
+      "failed": 0,
+      "repaired": 10
+     },
+     "mean_field_acc": 0.97
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.983669548511047,
+       "lo": 0.9463722397476341,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.983669548511047,
+       "lo": 0.9463722397476341,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9817483189241114,
+       "lo": 0.9448810704073021,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9827089337175793,
+       "lo": 0.9456848957985214,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.91,
+       "lo": 0.85,
+       "hi": 0.96,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.9,
+       "lo": 0.84,
+       "hi": 0.95,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.92,
+       "lo": 0.86,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 0.93,
+       "lo": 0.88,
+       "hi": 0.97,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.91,
+       "lo": 0.85,
+       "hi": 0.96,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9058597502401537,
+       "lo": 0.8308389273072732,
+       "hi": 0.9671199362041468,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 0.9058597502401537,
+       "lo": 0.8308389273072732,
+       "hi": 0.9671199362041468,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9039385206532181,
+       "lo": 0.8289673248872438,
+       "hi": 0.9650698602794411,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9048991354466859,
+       "lo": 0.8296810012696467,
+       "hi": 0.9660348134899034,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.86,
+       "lo": 0.79,
+       "hi": 0.92,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 3.6163819999999998,
+      "p50_s": 3.4290000000000003,
+      "p95_s": 8.262049999999997,
+      "failed": 1,
+      "repaired": 9
+     },
+     "mean_field_acc": 0.9841666666666667
+    }
+   }
+  },
+  "lite-3.5-v2": {
+   "config": {
+    "name": "lite-3.5-v2",
+    "model": "gemini-3.5-flash-lite",
+    "sets": [
+     "cord",
+     "invoices"
+    ],
+    "split": "test",
+    "input_mode": "image",
+    "output_mode": "strict",
+    "prompt": "v2",
+    "repair": 1,
+    "samples": 1,
+    "logprobs": false,
+    "max_docs": null,
+    "workers": 8,
+    "budget_usd": 15.0,
+    "model_ids": [
+     "gemini-3.5-flash-lite"
+    ],
+    "documents": 200,
+    "price_date": "2026-10-29",
+    "cost_usd": 0.414,
+    "written": "2026-10-31T18:24:05"
+   },
+   "sets": {
+    "cord": {
+     "fields": [
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.75,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.9797979797979798,
+       "lo": 0.9494949494949495,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9959677419354839,
+       "lo": 0.9866071428571429,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.84,
+       "lo": 0.77,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "subtotal",
+       "acc": 0.98,
+       "lo": 0.95,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.030303030303030304,
+       "n_null": 33
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 96
+      },
+      {
+       "field": "service_charge",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 88
+      },
+      {
+       "field": "tax",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 59
+      },
+      {
+       "field": "total",
+       "acc": 0.96,
+       "lo": 0.92,
+       "hi": 0.99,
+       "n": 100,
+       "halluc": 0.75,
+       "n_null": 4
+      },
+      {
+       "field": "cash_tendered",
+       "acc": 0.98989898989899,
+       "lo": 0.9696969696969697,
+       "hi": 1.0,
+       "n": 99,
+       "halluc": 0.0,
+       "n_null": 34
+      },
+      {
+       "field": "change_due",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 54
+      },
+      {
+       "field": "line_items",
+       "acc": 0.88,
+       "lo": 0.81,
+       "hi": 0.94,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 0.9718875502008032,
+       "lo": 0.9372185570398892,
+       "hi": 0.9961240310077519,
+       "n": 249,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 218,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 67,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9838709677419355,
+       "lo": 0.9527846122539589,
+       "hi": 1.0,
+       "n": 248,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.85,
+       "lo": 0.78,
+       "hi": 0.91,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 1.356398,
+      "p50_s": 17.346,
+      "p95_s": 52.5565,
+      "failed": 0,
+      "repaired": 9
+     },
+     "mean_field_acc": 0.9737121212121211
+    },
+    "invoices": {
+     "fields": [
+      {
+       "field": "vendor_name",
+       "acc": 0.73,
+       "lo": 0.64,
+       "hi": 0.81,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9971181556195965,
+       "lo": 0.9922357607639329,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9980787704130644,
+       "lo": 0.9950149551345963,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.71,
+       "lo": 0.62,
+       "hi": 0.79,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "first_attempt": [
+      {
+       "field": "vendor_name",
+       "acc": 0.73,
+       "lo": 0.64,
+       "hi": 0.81,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "invoice_number",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "issue_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "due_date",
+       "acc": 0.99,
+       "lo": 0.97,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 16
+      },
+      {
+       "field": "currency",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "subtotal",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "discount",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 71
+      },
+      {
+       "field": "shipping",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 82
+      },
+      {
+       "field": "tax",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 10
+      },
+      {
+       "field": "amount_paid",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": 0.0,
+       "n_null": 94
+      },
+      {
+       "field": "total",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "line_items",
+       "acc": 0.97,
+       "lo": 0.93,
+       "hi": 1.0,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.description",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.quantity",
+       "acc": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.unit_price",
+       "acc": 0.9971181556195965,
+       "lo": 0.9922357607639329,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "item.line_total",
+       "acc": 0.9980787704130644,
+       "lo": 0.9950149551345963,
+       "hi": 1.0,
+       "n": 1041,
+       "halluc": NaN,
+       "n_null": 0
+      },
+      {
+       "field": "ALL FIELDS",
+       "acc": 0.7,
+       "lo": 0.61,
+       "hi": 0.79,
+       "n": 100,
+       "halluc": NaN,
+       "n_null": 0
+      }
+     ],
+     "cost": {
+      "cost_per_1k": 2.7838219999999994,
+      "p50_s": 3.394,
+      "p95_s": 9.411549999999998,
+      "failed": 0,
+      "repaired": 1
+     },
+     "mean_field_acc": 0.9741666666666666
+    }
+   }
+  }
+ },
+ "repair": {
+  "lite-3.1": {
+   "docs": 9,
+   "fixed": 1,
+   "broken": 7,
+   "stuck": 6,
+   "extra_per_1k": 0.053717499999999994
+  },
+  "lite-3.5": {
+   "docs": 10,
+   "fixed": 1,
+   "broken": 1,
+   "stuck": 4,
+   "extra_per_1k": 0.0855035
+  }
+ },
+ "signals": {
+  "lite-3.1": {
+   "stated": {
+    "auroc": 0.6737682481751824,
+    "ece": 0.03698198198198195,
+    "field_cov_at_1pct": 0.0,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.040040040040040026,
+    "doc_error_rate": 0.31999999999999995
+   },
+   "checks": {
+    "auroc": 0.4142759384775808,
+    "ece": NaN,
+    "field_cov_at_1pct": 0.0,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.040040040040040026,
+    "doc_error_rate": 0.31999999999999995
+   },
+   "cross_model": {
+    "auroc": 0.8773396767466111,
+    "ece": NaN,
+    "field_cov_at_1pct": 0.9619619619619619,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.040040040040040026,
+    "doc_error_rate": 0.31999999999999995
+   },
+   "combined": {
+    "auroc": 0.9310414494264859,
+    "ece": 0.006959902543047915,
+    "field_cov_at_1pct": 0.9619619619619619,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.585,
+    "field_error_rate": 0.040040040040040026,
+    "doc_error_rate": 0.31999999999999995
+   }
+  },
+  "lite-3.5": {
+   "stated": {
+    "auroc": 0.7878779337429769,
+    "ece": 0.00406906906906911,
+    "field_cov_at_1pct": 0.8513513513513513,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.525,
+    "field_error_rate": 0.013513513513513487,
+    "doc_error_rate": 0.10499999999999998
+   },
+   "checks": {
+    "auroc": 0.41085555367645676,
+    "ece": NaN,
+    "field_cov_at_1pct": 0.0,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.013513513513513487,
+    "doc_error_rate": 0.10499999999999998
+   },
+   "consistency": {
+    "auroc": 0.7568352218276114,
+    "ece": 0.009259259259259267,
+    "field_cov_at_1pct": 0.992992992992993,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.013513513513513487,
+    "doc_error_rate": 0.10499999999999998
+   },
+   "cross_model": {
+    "auroc": 0.6496702181633689,
+    "ece": NaN,
+    "field_cov_at_1pct": 0.9619619619619619,
+    "doc_cov_at_2pct": 0.0,
+    "doc_cov_at_5pct": 0.0,
+    "field_error_rate": 0.013513513513513487,
+    "doc_error_rate": 0.10499999999999998
+   },
+   "combined": {
+    "auroc": 0.7590619538869159,
+    "ece": 0.004614979099674328,
+    "field_cov_at_1pct": 0.993993993993994,
+    "doc_cov_at_2pct": 0.07,
+    "doc_cov_at_5pct": 0.07,
+    "field_error_rate": 0.013513513513513487,
+    "doc_error_rate": 0.10499999999999998
+   }
+  }
+ },
+ "degradation": {
+  "lite-3.1": [
+   0.925,
+   0.95,
+   0.95,
+   0.925,
+   0.675,
+   0.275
+  ],
+  "lite-3.5": [
+   0.95,
+   0.95,
+   0.975,
+   0.9,
+   0.725,
+   0.25
+  ]
+ },
+ "regression": {
+  "lite-3.1": {
+   "rows": [
+    {
+     "n": 200,
+     "a": 0.83,
+     "b": 0.83,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "subtotal",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.99,
+     "b": 0.99,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "discount",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "service_charge",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 199,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "tax",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.98,
+     "b": 0.98,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "total",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 99,
+     "a": 0.9595959595959596,
+     "b": 0.9595959595959596,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "cash_tendered",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "change_due",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.9,
+     "b": 0.9,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "line_items",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.94,
+     "b": 0.73,
+     "a_only": 21,
+     "b_only": 0,
+     "p": 9.5367431640625e-07,
+     "field": "vendor_name",
+     "mde": 0.12687705935948196,
+     "p_holm": 1.430511474609375e-05
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "invoice_number",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.96,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 4,
+     "p": 0.125,
+     "field": "issue_date",
+     "mde": 0.04,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.96,
+     "b": 0.95,
+     "a_only": 3,
+     "b_only": 2,
+     "p": 1.0,
+     "field": "due_date",
+     "mde": 0.05,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.98,
+     "b": 0.98,
+     "a_only": 1,
+     "b_only": 1,
+     "p": 1.0,
+     "field": "currency",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "shipping",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "amount_paid",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.68,
+     "b": 0.58,
+     "a_only": 21,
+     "b_only": 1,
+     "p": 1.0967254638671875e-05,
+     "field": "ALL FIELDS",
+     "mde": 0.06531645759302225,
+     "p_holm": 1.0967254638671875e-05
+    }
+   ],
+   "summary": {
+    "a": "lite-3.1",
+    "b": "lite-3.1-v2",
+    "n_docs": 200,
+    "mean_a": 0.9666397306397307,
+    "mean_b": 0.9546397306397306
+   }
+  },
+  "lite-3.5": {
+   "rows": [
+    {
+     "n": 200,
+     "a": 0.99,
+     "b": 0.99,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "subtotal",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "discount",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "service_charge",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 199,
+     "a": 0.9949748743718593,
+     "b": 0.9949748743718593,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "tax",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.98,
+     "b": 0.98,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "total",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 99,
+     "a": 0.9797979797979798,
+     "b": 0.9797979797979798,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "cash_tendered",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "change_due",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.93,
+     "b": 0.925,
+     "a_only": 1,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "line_items",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.99,
+     "b": 0.73,
+     "a_only": 26,
+     "b_only": 0,
+     "p": 2.9802322387695312e-08,
+     "field": "vendor_name",
+     "mde": 0.1411757589107326,
+     "p_holm": 4.470348358154297e-07
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "invoice_number",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.99,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 1,
+     "p": 1.0,
+     "field": "issue_date",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.99,
+     "b": 0.99,
+     "a_only": 1,
+     "b_only": 1,
+     "p": 1.0,
+     "field": "due_date",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 0.99,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 1,
+     "p": 1.0,
+     "field": "currency",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "shipping",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 100,
+     "a": 1.0,
+     "b": 1.0,
+     "a_only": 0,
+     "b_only": 0,
+     "p": 1.0,
+     "field": "amount_paid",
+     "mde": 0.02,
+     "p_holm": 1.0
+    },
+    {
+     "n": 200,
+     "a": 0.895,
+     "b": 0.775,
+     "a_only": 26,
+     "b_only": 2,
+     "p": 3.032386302947998e-06,
+     "field": "ALL FIELDS",
+     "mde": 0.07368690204014615,
+     "p_holm": 3.032386302947998e-06
+    }
+   ],
+   "summary": {
+    "a": "lite-3.5",
+    "b": "lite-3.5-v2",
+    "n_docs": 200,
+    "mean_a": 0.988984856944656,
+    "mean_b": 0.9726515236113226
+   }
+  }
+ }
+}

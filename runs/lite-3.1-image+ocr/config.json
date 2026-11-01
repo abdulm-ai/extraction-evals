@@ -1,0 +1,25 @@
+{
+ "name": "lite-3.1-image+ocr",
+ "model": "gemini-3.1-flash-lite",
+ "sets": [
+  "cord",
+  "invoices"
+ ],
+ "split": "test",
+ "input_mode": "image+ocr",
+ "output_mode": "strict",
+ "prompt": "v1",
+ "repair": 1,
+ "samples": 1,
+ "logprobs": false,
+ "max_docs": null,
+ "workers": 8,
+ "budget_usd": 15.0,
+ "model_ids": [
+  "gemini-3.1-flash-lite"
+ ],
+ "documents": 200,
+ "price_date": "2026-10-29",
+ "cost_usd": 0.2871,
+ "written": "2026-11-01T12:38:43"
+}

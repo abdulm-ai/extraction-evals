@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import matplotlib
+import matplotlib.ticker
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -34,7 +35,7 @@ LABEL = {"lite-3.1": "Gemini 3.1 Flash-Lite", "lite-3.5": "Gemini 3.5 Flash-Lite
          "flash-3.8": "Gemini 3.8 Flash"}
 INPUT_MODELS = ["lite-3.1"]
 OUTPUT_MODELS = ["lite-3.1", "lite-3.5"]
-COLORS = {"lite-3.1": "#9cc3e6", "lite-3.5": "#5b8fc7", "flash-3.6": "#2f5d94", "flash-3.8": "#1d3557"}
+COLORS = {"lite-3.1": "#e07b39", "lite-3.5": "#2f5d94", "flash-3.6": "#5b8fc7", "flash-3.8": "#1d3557"}
 MODES = ["image", "ocr", "image+ocr", "gt_text"]
 
 plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
@@ -82,6 +83,11 @@ for s in ("cord", "invoices"):
             cells.append(ci(row))
         md.append(f"| {f} | " + " | ".join(cells) + " |")
     md.append("| mean of fields | " + " | ".join(pct(results["runs"][m]["sets"][s]["mean_field_acc"]) for m in main) + " |")
+    raw = []
+    for m in main:
+        allf = next(r for r in field_table(load_run(m, corrected=False).by_set(s)) if r["field"] == "ALL FIELDS")
+        raw.append(ci(allf))
+    md.append("| ALL FIELDS, uncorrected gold | " + " | ".join(raw) + " |")
     md.append("| $ per 1,000 docs | " + " | ".join(f"{results['runs'][m]['sets'][s]['cost']['cost_per_1k']:.2f}" for m in main) + " |")
     md.append("| p50 / p95 s | " + " | ".join(f"{results['runs'][m]['sets'][s]['cost']['p50_s']:.1f} / {results['runs'][m]['sets'][s]['cost']['p95_s']:.1f}" for m in main) + " |")
 
@@ -96,9 +102,11 @@ if main:
             color = COLORS[m]
             ax.errorbar([x], [100 * allf["acc"]], yerr=[[100 * (allf["acc"] - allf["lo"])], [100 * (allf["hi"] - allf["acc"])]],
                         fmt="o", color=color, capsize=3)
-            ax.annotate(LABEL[m], (x, 100 * allf["acc"]), textcoords="offset points", xytext=(6, 4), fontsize=8)
-        ax.set_xscale("log")
-        ax.set_xlabel("$ per 1,000 documents (log scale)")
+            ax.annotate(LABEL[m], (x, 100 * allf["acc"]), textcoords="offset points", xytext=(-6, 6), ha="right", fontsize=8)
+        xs = [results["runs"][m]["sets"][s]["cost"]["cost_per_1k"] for m in main]
+        ax.set_xlim(0, 1.25 * max(xs))
+        ax.xaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter("$%.2f"))
+        ax.set_xlabel("$ per 1,000 documents, paid-tier prices")
         ax.set_ylabel("documents with every field right, %")
         ax.set_title({"cord": "CORD receipts (100, test)", "invoices": "Synthetic invoices (100, test)"}[s])
     fig.suptitle("Accuracy against cost (bars are 95% intervals)", fontsize=10)
@@ -241,7 +249,7 @@ if sig_res:
             if mk.sum() >= 5:
                 xs.append(p[mk].mean())
                 ys.append(c[mk].mean())
-        ax.plot(xs, ys, "o-", label=LABEL[m], ms=4)
+        ax.plot(xs, ys, "o-", label=LABEL[m], ms=4, color=COLORS[m])
     ax.plot([0, 1], [0, 1], "k--", lw=0.8)
     ax.set_xlabel("stated confidence")
     ax.set_ylabel("share actually correct")
@@ -264,8 +272,8 @@ if deg:
             mean, lo, hi = bootstrap_ci(v)
             ys.append(mean), los.append(lo), his.append(hi)
         curves[m] = ys
-        ax.plot(range(6), 100 * np.array(ys), "o-", label=LABEL[m], ms=4)
-        ax.fill_between(range(6), 100 * np.array(los), 100 * np.array(his), alpha=0.1)
+        ax.plot(range(6), 100 * np.array(ys), "o-", label=LABEL[m], ms=4, color=COLORS[m])
+        ax.fill_between(range(6), 100 * np.array(los), 100 * np.array(his), alpha=0.1, color=COLORS[m])
     ax.set_xlabel("wear level (0 = clean render)")
     ax.set_ylabel("invoices with every field right, %")
     ax.set_title("Same 40 invoices, increasingly worn", fontsize=10)
@@ -274,6 +282,11 @@ if deg:
     fig.savefig(OUT / "degradation.png")
     plt.close(fig)
     results["degradation"] = curves
+    md.append("\n### Wear: invoices with every field right, % (40 invoices per level)\n")
+    md.append("| Model | " + " | ".join(f"level {lv}" for lv in range(6)) + " |")
+    md.append("|---|" + "---|" * 6)
+    for m in deg:
+        md.append(f"| {LABEL[m]} | " + " | ".join(pct(y) for y in curves[m]) + " |")
 
 # --- regression demo ---------------------------------------------------------
 reg = {}
@@ -282,6 +295,18 @@ for m in OUTPUT_MODELS:
         rows, summ = compare(m, f"{m}-v2")
         reg[m] = {"rows": rows, "summary": summ}
 results["regression"] = reg
+for m, r in reg.items():
+    summ = r["summary"]
+    md.append(f"\n### Prompt v1 vs v2, {LABEL[m]} (paired, {summ['n_docs']} test docs, fields that changed)\n")
+    md.append("| Field | v1 | v2 | only v1 right | only v2 right | p (Holm) | |")
+    md.append("|---|---|---|---|---|---|---|")
+    for row in r["rows"]:
+        if row["a_only"] + row["b_only"] == 0:
+            continue
+        flag = "REGRESSION" if row["field"] != "ALL FIELDS" and row["p_holm"] < 0.05 and row["b"] < row["a"] else ""
+        p = f"{row['p_holm']:.2g}" if row["field"] != "ALL FIELDS" else f"{row['p']:.2g} (unadjusted)"
+        md.append(f"| {row['field']} | {pct(row['a'])} | {pct(row['b'])} | {row['a_only']} | {row['b_only']} | {p} | {flag} |")
+    md.append(f"| mean of fields | {pct(summ['mean_a'])} | {pct(summ['mean_b'])} | | | | |")
 
 (OUT / "results.json").write_text(json.dumps(results, indent=1, default=float), encoding="utf-8")
 (OUT / "tables.md").write_text("\n".join(md) + "\n", encoding="utf-8")
